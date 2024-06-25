@@ -25,18 +25,18 @@ jobs:
         run: ls
 
       - name: Compile classes
-        run: javac -d ./bin -cp "./testresources/junit-platform-console-standalone-1.9.2.jar" ./src/POEPart3/POEPart3.IT.java ./src/POEPart3/POEPart3ITTest.java ./test/POEPart3/POEPart3.ITTest.java ./test/POEPart3/POEPart3ITTest.java
+        run: |
+          mkdir -p ./bin
+          javac -d ./bin -cp "./testresources/junit-platform-console-standalone-1.9.2.jar" ./src/POEPart3/POEPart3.IT.java ./src/POEPart3/POEPart3ITTest.java ./test/POEPart3/POEPart3.ITTest.java ./test/POEPart3/POEPart3ITTest.java
 
       - name: List contents of bin directory after compile
         run: ls ./bin/POEPart3
 
-      # Run IntTestTest and create report
       - name: Run POEPart3.ITTest and create report
         run: |
           ls ./bin
           java -jar ./testresources/junit-platform-console-standalone-1.9.2.jar -cp ./bin --select-class POEPart3.POEPart3.ITTest
 
-      # Run StringTestTest and create report
       - name: Run POEPart3ITTest and create report
         run: |
           ls ./bin
